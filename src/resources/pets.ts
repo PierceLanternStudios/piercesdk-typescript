@@ -5,6 +5,7 @@ import { APIPromise } from '../core/api-promise';
 import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
+import * as Shared from './shared';
 
 export class Pets extends APIResource {
   /**
@@ -20,6 +21,22 @@ export class Pets extends APIResource {
    */
   create(body: PetCreateParams, options?: RequestOptions): APIPromise<Pet> {
     return this._client.post('/pet', { body, ...options });
+  }
+
+/**
+   * Add a new pet to the store, and places an order for one of that pet. Yay!
+   *
+   * @example
+   * ```ts
+   * const pet = await client.pets.createAndOrder({
+   *   name: 'doggie',
+   *   photoUrls: ['string'],
+   * });
+   * ```
+   */
+  async createAndOrder(body: PetCreateParams, options?: RequestOptions): Promise<Shared.Order> {
+    const pet: Pet = await this.create(body, options);
+    return this._client.post('/store/order', { body: { id: pet.id, quantity: 1, status: "ordered" }, ...options });
   }
 
   /**
