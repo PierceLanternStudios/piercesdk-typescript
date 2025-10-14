@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^piercesdk(/.*)?',
+              regex: '^piercesdk2(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

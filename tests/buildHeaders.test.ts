@@ -1,5 +1,5 @@
 import { inspect } from 'node:util';
-import { buildHeaders, type HeadersLike, type NullableHeaders } from 'piercesdk/internal/headers';
+import { buildHeaders, type HeadersLike, type NullableHeaders } from 'piercesdk2/internal/headers';
 
 function inspectNullableHeaders(headers: NullableHeaders) {
   return `NullableHeaders {${[

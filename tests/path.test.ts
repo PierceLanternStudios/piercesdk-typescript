@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'piercesdk/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from 'piercesdk2/internal/utils/path';
 import { inspect } from 'node:util';
 import { runInNewContext } from 'node:vm';
 

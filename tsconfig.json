@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "paths": {
-      "piercesdk/*": ["./src/*"],
-      "piercesdk": ["./src/index.ts"]
+      "piercesdk2/*": ["./src/*"],
+      "piercesdk2": ["./src/index.ts"]
     },
     "noEmit": true,
 

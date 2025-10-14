@@ -1,8 +1,8 @@
 # Piercesdk3 TypeScript API Library
 
-[![NPM version](<https://img.shields.io/npm/v/piercesdk.svg?label=npm%20(stable)>)](https://npmjs.org/package/piercesdk) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/piercesdk)
+[![NPM version](<https://img.shields.io/npm/v/piercesdk2.svg?label=npm%20(stable)>)](https://npmjs.org/package/piercesdk2) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/piercesdk2)
 
-This library provides convenient access to the Piercesdk REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Piercesdk4 REST API from server-side TypeScript or JavaScript.
 
 The full API of this library can be found in [api.md](api.md).
 
@@ -15,7 +15,7 @@ npm install git+ssh://git@github.com:stainless-sdks/piercesdk-typescript.git
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install piercesdk`
+> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install piercesdk2`
 
 ## Usage
 
@@ -23,9 +23,9 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import Piercesdk from 'piercesdk';
+import Piercesdk4 from 'piercesdk2';
 
-const client = new Piercesdk({
+const client = new Piercesdk4({
   apiKey: process.env['PETSTORE_API_KEY'], // This is the default and can be omitted
 });
 
@@ -40,13 +40,13 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import Piercesdk from 'piercesdk';
+import Piercesdk4 from 'piercesdk2';
 
-const client = new Piercesdk({
+const client = new Piercesdk4({
   apiKey: process.env['PETSTORE_API_KEY'], // This is the default and can be omitted
 });
 
-const response: Piercesdk.StoreListInventoryResponse = await client.store.listInventory();
+const response: Piercesdk4.StoreListInventoryResponse = await client.store.listInventory();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -60,7 +60,7 @@ a subclass of `APIError` will be thrown:
 <!-- prettier-ignore -->
 ```ts
 const response = await client.store.listInventory().catch(async (err) => {
-  if (err instanceof Piercesdk.APIError) {
+  if (err instanceof Piercesdk4.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
     console.log(err.headers); // {server: 'nginx', ...}
@@ -94,7 +94,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new Piercesdk({
+const client = new Piercesdk4({
   maxRetries: 0, // default is 2
 });
 
@@ -111,7 +111,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new Piercesdk({
+const client = new Piercesdk4({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
@@ -137,7 +137,7 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 
 <!-- prettier-ignore -->
 ```ts
-const client = new Piercesdk();
+const client = new Piercesdk4();
 
 const response = await client.store.listInventory().asResponse();
 console.log(response.headers.get('X-My-Header'));
@@ -158,13 +158,13 @@ console.log(response);
 
 The log level can be configured in two ways:
 
-1. Via the `PIERCESDK_LOG` environment variable
+1. Via the `PIERCESDK4_LOG` environment variable
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import Piercesdk from 'piercesdk';
+import Piercesdk4 from 'piercesdk2';
 
-const client = new Piercesdk({
+const client = new Piercesdk4({
   logLevel: 'debug', // Show all log messages
 });
 ```
@@ -190,13 +190,13 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import Piercesdk from 'piercesdk';
+import Piercesdk4 from 'piercesdk2';
 import pino from 'pino';
 
 const logger = pino();
 
-const client = new Piercesdk({
-  logger: logger.child({ name: 'Piercesdk' }),
+const client = new Piercesdk4({
+  logger: logger.child({ name: 'Piercesdk4' }),
   logLevel: 'debug', // Send all messages to pino, allowing it to filter
 });
 ```
@@ -259,10 +259,10 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import Piercesdk from 'piercesdk';
+import Piercesdk4 from 'piercesdk2';
 import fetch from 'my-fetch';
 
-const client = new Piercesdk({ fetch });
+const client = new Piercesdk4({ fetch });
 ```
 
 ### Fetch options
@@ -270,9 +270,9 @@ const client = new Piercesdk({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import Piercesdk from 'piercesdk';
+import Piercesdk4 from 'piercesdk2';
 
-const client = new Piercesdk({
+const client = new Piercesdk4({
   fetchOptions: {
     // `RequestInit` options
   },
@@ -287,11 +287,11 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import Piercesdk from 'piercesdk';
+import Piercesdk4 from 'piercesdk2';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
-const client = new Piercesdk({
+const client = new Piercesdk4({
   fetchOptions: {
     dispatcher: proxyAgent,
   },
@@ -301,9 +301,9 @@ const client = new Piercesdk({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import Piercesdk from 'piercesdk';
+import Piercesdk4 from 'piercesdk2';
 
-const client = new Piercesdk({
+const client = new Piercesdk4({
   fetchOptions: {
     proxy: 'http://localhost:8888',
   },
@@ -313,10 +313,10 @@ const client = new Piercesdk({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import Piercesdk from 'npm:piercesdk';
+import Piercesdk4 from 'npm:piercesdk2';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
-const client = new Piercesdk({
+const client = new Piercesdk4({
   fetchOptions: {
     client: httpClient,
   },
