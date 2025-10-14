@@ -8,7 +8,7 @@ import { path } from '../internal/utils/path';
 
 export class Pets extends APIResource {
   /**
-   * Add a new pet to the store
+   * Add a new pet to the store. Yay!
    *
    * @example
    * ```ts
