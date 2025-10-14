@@ -23,7 +23,7 @@ export class Pets extends APIResource {
     return this._client.post('/pet', { body, ...options });
   }
 
-/**
+  /**
    * Add a new pet to the store, and places an order for one of that pet. Yay!
    *
    * @example
@@ -36,7 +36,10 @@ export class Pets extends APIResource {
    */
   async createAndOrder(body: PetCreateParams, options?: RequestOptions): Promise<Shared.Order> {
     const pet: Pet = await this.create(body, options);
-    return this._client.post('/store/order', { body: { petId: pet.id, quantity: 1, status: "ordered" }, ...options });
+    return this._client.post('/store/order', {
+      body: { petId: pet.id, quantity: 1, status: 'ordered' },
+      ...options,
+    });
   }
 
   /**
