@@ -1,4 +1,4 @@
-# Piercesdk TypeScript API Library
+# Piercesdk3 TypeScript API Library
 
 [![NPM version](<https://img.shields.io/npm/v/piercesdk.svg?label=npm%20(stable)>)](https://npmjs.org/package/piercesdk) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/piercesdk)
 
