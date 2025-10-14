@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'piercesdk/internal/uploads';
-import { toFile } from 'piercesdk/core/uploads';
+import { multipartFormRequestOptions, createForm } from 'piercesdk2/internal/uploads';
+import { toFile } from 'piercesdk2/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

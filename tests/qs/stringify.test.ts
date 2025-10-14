@@ -1,7 +1,7 @@
 import iconv from 'iconv-lite';
-import { stringify } from 'piercesdk/internal/qs';
-import { encode } from 'piercesdk/internal/qs/utils';
-import { StringifyOptions } from 'piercesdk/internal/qs/types';
+import { stringify } from 'piercesdk2/internal/qs';
+import { encode } from 'piercesdk2/internal/qs/utils';
+import { StringifyOptions } from 'piercesdk2/internal/qs/types';
 import { empty_test_cases } from './empty-keys-cases';
 import assert from 'assert';
 

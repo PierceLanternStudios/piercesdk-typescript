@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "piercesdk/*": ["./dist/src/*"],
-      "piercesdk": ["./dist/src/index.ts"]
+      "piercesdk2/*": ["./dist/src/*"],
+      "piercesdk2": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,

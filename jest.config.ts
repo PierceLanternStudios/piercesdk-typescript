@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^piercesdk$': '<rootDir>/src/index.ts',
-    '^piercesdk/(.*)$': '<rootDir>/src/$1',
+    '^piercesdk2$': '<rootDir>/src/index.ts',
+    '^piercesdk2/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

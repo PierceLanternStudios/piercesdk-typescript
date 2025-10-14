@@ -55,12 +55,12 @@ $ cd piercesdk-typescript
 # With yarn
 $ yarn link
 $ cd ../my-package
-$ yarn link piercesdk
+$ yarn link piercesdk2
 
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global piercesdk
+$ pnpm link -—global piercesdk2
 ```
 
 ## Running tests
