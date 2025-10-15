@@ -63,7 +63,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['PIERCESDK4_BASE_URL'].
+   * Defaults to process.env['PIERCESDK5_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -117,7 +117,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['PIERCESDK4_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['PIERCESDK5_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -130,9 +130,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Piercesdk4 API.
+ * API Client for interfacing with the Piercesdk5 API.
  */
-export class Piercesdk4 {
+export class Piercesdk5 {
   apiKey: string;
 
   baseURL: string;
@@ -148,10 +148,10 @@ export class Piercesdk4 {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Piercesdk4 API.
+   * API Client for interfacing with the Piercesdk5 API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['PETSTORE_API_KEY'] ?? undefined]
-   * @param {string} [opts.baseURL=process.env['PIERCESDK4_BASE_URL'] ?? https://petstore3.swagger.io/api/v3] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['PIERCESDK5_BASE_URL'] ?? https://petstore3.swagger.io/api/v3] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -160,13 +160,13 @@ export class Piercesdk4 {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('PIERCESDK4_BASE_URL'),
+    baseURL = readEnv('PIERCESDK5_BASE_URL'),
     apiKey = readEnv('PETSTORE_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
-      throw new Errors.Piercesdk4Error(
-        "The PETSTORE_API_KEY environment variable is missing or empty; either provide it, or instantiate the Piercesdk4 client with an apiKey option, like new Piercesdk4({ apiKey: 'My API Key' }).",
+      throw new Errors.Piercesdk5Error(
+        "The PETSTORE_API_KEY environment variable is missing or empty; either provide it, or instantiate the Piercesdk5 client with an apiKey option, like new Piercesdk5({ apiKey: 'My API Key' }).",
       );
     }
 
@@ -177,14 +177,14 @@ export class Piercesdk4 {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? Piercesdk4.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? Piercesdk5.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('PIERCESDK4_LOG'), "process.env['PIERCESDK4_LOG']", this) ??
+      parseLogLevel(readEnv('PIERCESDK5_LOG'), "process.env['PIERCESDK5_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
@@ -703,10 +703,10 @@ export class Piercesdk4 {
     }
   }
 
-  static Piercesdk4 = this;
+  static Piercesdk5 = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static Piercesdk4Error = Errors.Piercesdk4Error;
+  static Piercesdk5Error = Errors.Piercesdk5Error;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -727,11 +727,11 @@ export class Piercesdk4 {
   users: API.Users = new API.Users(this);
 }
 
-Piercesdk4.Pets = Pets;
-Piercesdk4.Store = Store;
-Piercesdk4.Users = Users;
+Piercesdk5.Pets = Pets;
+Piercesdk5.Store = Store;
+Piercesdk5.Users = Users;
 
-export declare namespace Piercesdk4 {
+export declare namespace Piercesdk5 {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
