@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Piercesdk4 } from 'piercesdk2';
+import { Piercesdk5 } from 'piercesdk2';
 
-const { stringifyQuery } = Piercesdk4.prototype as any;
+const { stringifyQuery } = Piercesdk5.prototype as any;
 
 describe(stringifyQuery, () => {
   for (const [input, expected] of [
