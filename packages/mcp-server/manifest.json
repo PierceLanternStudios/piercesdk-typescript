@@ -8,9 +8,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stainless-sdks/piercesdk-typescript.git"
+    "url": "git+https://github.com/PierceLanternStudios/piercesdk-typescript.git"
   },
-  "homepage": "https://github.com/stainless-sdks/piercesdk-typescript/tree/main/packages/mcp-server#readme",
+  "homepage": "https://github.com/PierceLanternStudios/piercesdk-typescript/tree/main/packages/mcp-server#readme",
   "server": {
     "type": "node",
     "entry_point": "index.js",
