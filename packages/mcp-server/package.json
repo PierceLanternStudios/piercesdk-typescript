@@ -1,6 +1,6 @@
 {
   "name": "piercesdk2-mcp",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "The official MCP Server for the Piercesdk5 API",
   "author": "Piercesdk5 <>",
   "types": "dist/index.d.ts",
@@ -8,10 +8,10 @@
   "type": "commonjs",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stainless-sdks/piercesdk-typescript.git",
+    "url": "git+https://github.com/PierceLanternStudios/piercesdk-typescript.git",
     "directory": "packages/mcp-server"
   },
-  "homepage": "https://github.com/stainless-sdks/piercesdk-typescript/tree/main/packages/mcp-server#readme",
+  "homepage": "https://github.com/PierceLanternStudios/piercesdk-typescript/tree/main/packages/mcp-server#readme",
   "license": "Apache-2.0",
   "packageManager": "yarn@1.22.22",
   "private": false,
