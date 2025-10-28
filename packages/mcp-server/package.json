@@ -1,6 +1,6 @@
 {
   "name": "piercesdk2-mcp",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "The official MCP Server for the Piercesdk5 API",
   "author": "Piercesdk5 <>",
   "types": "dist/index.d.ts",
