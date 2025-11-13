@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { maybeFilter } from 'piercesdk2-mcp/filtering';
-import { Metadata, asTextContentResult } from 'piercesdk2-mcp/tools/types';
+import { isJqError, maybeFilter } from 'piercesdk2-mcp/filtering';
+import { Metadata, asErrorResult, asTextContentResult } from 'piercesdk2-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import Piercesdk5 from 'piercesdk2';
@@ -45,7 +45,14 @@ export const tool: Tool = {
 
 export const handler = async (client: Piercesdk5, args: Record<string, unknown> | undefined) => {
   const { jq_filter, ...body } = args as any;
-  return asTextContentResult(await maybeFilter(jq_filter, await client.pets.findByTags(body)));
+  try {
+    return asTextContentResult(await maybeFilter(jq_filter, await client.pets.findByTags(body)));
+  } catch (error) {
+    if (isJqError(error)) {
+      return asErrorResult(error.message);
+    }
+    throw error;
+  }
 };
 
 export default { metadata, tool, handler };
