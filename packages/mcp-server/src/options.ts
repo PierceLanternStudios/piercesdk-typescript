@@ -16,7 +16,6 @@ export type McpOptions = {
   client?: ClientType | undefined;
   includeDynamicTools?: boolean | undefined;
   includeAllTools?: boolean | undefined;
-  includeCodeTools?: boolean | undefined;
   includeDocsTools?: boolean | undefined;
   filters?: Filter[] | undefined;
   capabilities?: Partial<ClientCapabilities> | undefined;
@@ -56,13 +55,13 @@ export function parseCLIOptions(): CLIOptions {
     .option('tools', {
       type: 'string',
       array: true,
-      choices: ['dynamic', 'all', 'code', 'docs'],
+      choices: ['dynamic', 'all', 'docs'],
       description: 'Use dynamic tools or all tools',
     })
     .option('no-tools', {
       type: 'string',
       array: true,
-      choices: ['dynamic', 'all', 'code', 'docs'],
+      choices: ['dynamic', 'all', 'docs'],
       description: 'Do not use any dynamic or all tools',
     })
     .option('tool', {
@@ -246,14 +245,13 @@ export function parseCLIOptions(): CLIOptions {
     }
   }
 
-  const shouldIncludeToolType = (toolType: 'dynamic' | 'all' | 'code' | 'docs') =>
+  const shouldIncludeToolType = (toolType: 'dynamic' | 'all' | 'docs') =>
     argv.noTools?.includes(toolType) ? false
     : argv.tools?.includes(toolType) ? true
     : undefined;
 
   const includeDynamicTools = shouldIncludeToolType('dynamic');
   const includeAllTools = shouldIncludeToolType('all');
-  const includeCodeTools = shouldIncludeToolType('code');
   const includeDocsTools = shouldIncludeToolType('docs');
 
   const transport = argv.transport as 'stdio' | 'http';
@@ -263,7 +261,6 @@ export function parseCLIOptions(): CLIOptions {
     client: client && client !== 'infer' && knownClients[client] ? client : undefined,
     includeDynamicTools,
     includeAllTools,
-    includeCodeTools,
     includeDocsTools,
     filters,
     capabilities: clientCapabilities,
@@ -284,10 +281,8 @@ const coerceArray = <T extends z.ZodTypeAny>(zodType: T) =>
   );
 
 const QueryOptions = z.object({
-  tools: coerceArray(z.enum(['dynamic', 'all', 'code', 'docs'])).describe('Specify which MCP tools to use'),
-  no_tools: coerceArray(z.enum(['dynamic', 'all', 'code', 'docs'])).describe(
-    'Specify which MCP tools to not use.',
-  ),
+  tools: coerceArray(z.enum(['dynamic', 'all', 'docs'])).describe('Specify which MCP tools to use'),
+  no_tools: coerceArray(z.enum(['dynamic', 'all', 'docs'])).describe('Specify which MCP tools to not use.'),
   tool: coerceArray(z.string()).describe('Include tools matching the specified names'),
   resource: coerceArray(z.string()).describe('Include tools matching the specified resources'),
   operation: coerceArray(z.enum(['read', 'write'])).describe(
@@ -387,16 +382,10 @@ export function parseQueryOptions(defaultOptions: McpOptions, query: unknown): M
     : queryOptions.tools?.includes('docs') ? true
     : defaultOptions.includeDocsTools;
 
-  let codeTools: boolean | undefined =
-    queryOptions.no_tools && queryOptions.no_tools?.includes('code') ? false
-    : queryOptions.tools?.includes('code') && defaultOptions.includeCodeTools ? true
-    : defaultOptions.includeCodeTools;
-
   return {
     client: queryOptions.client ?? defaultOptions.client,
     includeDynamicTools: dynamicTools,
     includeAllTools: allTools,
-    includeCodeTools: codeTools,
     includeDocsTools: docsTools,
     filters,
     capabilities: clientCapabilities,
