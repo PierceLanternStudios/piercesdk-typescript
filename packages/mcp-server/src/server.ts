@@ -20,6 +20,7 @@ import {
   parseEmbeddedJSON,
 } from './compat';
 import { dynamicTools } from './dynamic-tools';
+import { codeTool } from './code-tool';
 import docsSearchTool from './docs-search-tool';
 import { McpOptions } from './options';
 
@@ -158,6 +159,8 @@ export async function selectTools(endpoints: Endpoint[], options?: McpOptions): 
       includedTools = endpoints.slice();
     } else if (options?.includeDynamicTools) {
       includedTools = dynamicTools(endpoints);
+    } else if (options?.includeCodeTools) {
+      includedTools = [await codeTool()];
     } else {
       includedTools = endpoints.slice();
     }
