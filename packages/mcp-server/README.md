@@ -39,14 +39,14 @@ For clients with a configuration JSON, it might look something like this:
 If you use Cursor, you can install the MCP server by using the button below. You will need to set your environment variables
 in Cursor's `mcp.json`, which can be found in Cursor Settings > Tools & MCP > New MCP Server.
 
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=piercesdk2-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsInBpZXJjZXNkazItbWNwIl0sImVudiI6eyJQRVRTVE9SRV9BUElfS0VZIjoiU2V0IHlvdXIgUEVUU1RPUkVfQVBJX0tFWSBoZXJlLiJ9fQ)
+[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=piercesdk2-mcp&config=eyJuYW1lIjoicGllcmNlc2RrMi1tY3AiLCJ0cmFuc3BvcnQiOiJzc2UiLCJ1cmwiOiJodHRwczovL3BpZXJjZXNkay5zdGxtY3AuY29tL3NzZSIsImVudiI6eyJQRVRTVE9SRV9BUElfS0VZIjoiU2V0IHlvdXIgUEVUU1RPUkVfQVBJX0tFWSBoZXJlLiJ9fQ)
 
 ### VS Code
 
 If you use MCP, you can install the MCP server by clicking the link below. You will need to set your environment variables
 in VS Code's `mcp.json`, which can be found via Command Palette > MCP: Open User Configuration.
 
-[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22piercesdk2-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22piercesdk2-mcp%22%5D%2C%22env%22%3A%7B%22PETSTORE_API_KEY%22%3A%22Set%20your%20PETSTORE_API_KEY%20here.%22%7D%7D)
+[Open VS Code](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22piercesdk2-mcp%22%2C%22type%22%3A%22sse%22%2C%22url%22%3A%22https%3A%2F%2Fpiercesdk.stlmcp.com%2Fsse%22%2C%22env%22%3A%7B%22PETSTORE_API_KEY%22%3A%22Set%20your%20PETSTORE_API_KEY%20here.%22%7D%7D)
 
 ### Claude Code
 
@@ -54,7 +54,7 @@ If you use Claude Code, you can install the MCP server by running the command be
 environment variables in Claude Code's `.claude.json`, which can be found in your home directory.
 
 ```
-claude mcp add --transport stdio piercesdk2_api --env PETSTORE_API_KEY="Your PETSTORE_API_KEY here." -- npx -y piercesdk2-mcp
+claude mcp add piercesdk2_mcp_api --env PETSTORE_API_KEY="Your PETSTORE_API_KEY here." --transport sse https://piercesdk.stlmcp.com/sse
 ```
 
 ## Code Mode
