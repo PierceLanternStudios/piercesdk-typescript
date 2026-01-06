@@ -1,6 +1,6 @@
 {
   "name": "piercesdk2",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "The official TypeScript library for the Piercesdk5 API",
   "author": "Piercesdk5 <>",
   "types": "dist/index.d.ts",
